@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Department Data</title>
+</head>
+<body>
+<p> I have atteched department excel file here.
+<p> Please find attachement here
+</body>
+</html>
+
+
+
+<html>
+<head>
+<title>{{Department}} Department Data</title>
+</head>
+<body>
+<p> I have atteched {{Department}} department excel file here.
+<p> Please find attachement here
+
+<br>
+
+<br>
+
+<br>
+
+<p>Thank you, Regards,
+
+<p>{{Email}}
+</body>
+</html>

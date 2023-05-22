@@ -1,0 +1,257 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SendMail_Department_File" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_listOfDepartment" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="in_localFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_processName" Type="InArgument(x:String)" />
+    <x:Property Name="in_Year" Type="InArgument(x:String)" />
+    <x:Property Name="in_previousMonth" Type="InArgument(x:String)" />
+    <x:Property Name="in_currentDate" Type="InArgument(x:String)" />
+    <x:Property Name="in_dt_DepartmentData" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_sharePointURL" Type="InArgument(x:String)" />
+    <x:Property Name="in_sharepointFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_smtpPortNumber" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_smtpServer" Type="InArgument(x:String)" />
+    <x:Property Name="in_userName" Type="InArgument(x:String)" />
+    <x:Property Name="in_userPassword" Type="InArgument(ss:SecureString)" />
+    <x:Property Name="in_sendMailCC" Type="InArgument(x:String)" />
+    <x:Property Name="in_mainDepartmentsFolderPath" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:SendMail_Department_File.in_listOfDepartment>
+    <InArgument x:TypeArguments="scg:List(x:String)" />
+  </this:SendMail_Department_File.in_listOfDepartment>
+  <this:SendMail_Department_File.in_localFolderPath>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMail_Department_File.in_localFolderPath>
+  <this:SendMail_Department_File.in_processName>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMail_Department_File.in_processName>
+  <this:SendMail_Department_File.in_Year>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMail_Department_File.in_Year>
+  <this:SendMail_Department_File.in_previousMonth>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMail_Department_File.in_previousMonth>
+  <this:SendMail_Department_File.in_currentDate>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMail_Department_File.in_currentDate>
+  <this:SendMail_Department_File.in_dt_DepartmentData>
+    <InArgument x:TypeArguments="sd:DataTable" />
+  </this:SendMail_Department_File.in_dt_DepartmentData>
+  <this:SendMail_Department_File.in_sharePointURL>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMail_Department_File.in_sharePointURL>
+  <this:SendMail_Department_File.in_sharepointFolderPath>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMail_Department_File.in_sharepointFolderPath>
+  <this:SendMail_Department_File.in_smtpPortNumber>
+    <InArgument x:TypeArguments="x:Int32" />
+  </this:SendMail_Department_File.in_smtpPortNumber>
+  <this:SendMail_Department_File.in_smtpServer>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMail_Department_File.in_smtpServer>
+  <this:SendMail_Department_File.in_userName>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMail_Department_File.in_userName>
+  <this:SendMail_Department_File.in_userPassword>
+    <InArgument x:TypeArguments="ss:SecureString" />
+  </this:SendMail_Department_File.in_userPassword>
+  <this:SendMail_Department_File.in_sendMailCC>
+    <InArgument x:TypeArguments="x:String" />
+  </this:SendMail_Department_File.in_sendMailCC>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1208,2004</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>SendMail_Department_File_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="34">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Mail.Activities.Business.HtmlEditor</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Mail.Activities.Business</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="31">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPathTeam.SharePoint</AssemblyReference>
+      <AssemblyReference>OfficeDevPnP.Core</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SendMail_Department_File" sap:VirtualizedContainerService.HintSize="554,1939" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message - Send Mail - Department file execution started" sap:VirtualizedContainerService.HintSize="512,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Send Mail - Department file execution started.&quot;]" />
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="For each department in list of department send mail with department excel file as attachment" DisplayName="For Each - department in list" sap:VirtualizedContainerService.HintSize="512,1585" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_listOfDepartment]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="Department" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body - of For Each department in list" sap:VirtualizedContainerService.HintSize="476,1419" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="htnlBody" />
+              <Variable x:TypeArguments="x:String" Name="sharepointLink" />
+              <Variable x:TypeArguments="x:String" Name="managerName" />
+              <Variable x:TypeArguments="x:String" Name="emailSubject" />
+              <Variable x:TypeArguments="x:String" Name="DepartmentExcelFile" />
+              <Variable x:TypeArguments="x:String" Name="email" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap2010:Annotation.AnnotationText="Set location and name for department excel file" DisplayName="Assign - Excel file location in variable" sap:VirtualizedContainerService.HintSize="434,102" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[DepartmentExcelFile]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[in_mainDepartmentsFolderPath + "/" + Department  + "/" + in_Year  + "/" + in_previousMonth + "/" + in_previousMonth + "_SalaryDetails_" + in_currentDate +".xlsx"]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <ui:LookupDataTable LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnIndex="{x:Null}" TargetDataColumn="{x:Null}" sap2010:Annotation.AnnotationText="Look up for deparment and get Email from that department" DataTable="[in_dt_DepartmentData]" DisplayName="Lookup into department data table and get email" sap:VirtualizedContainerService.HintSize="434,333" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="Department" LookupValue="[Department]" TargetColumnName="Department Manager Email Id ">
+              <ui:LookupDataTable.CellValue>
+                <OutArgument x:TypeArguments="x:String">[email]</OutArgument>
+              </ui:LookupDataTable.CellValue>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LookupDataTable>
+            <Assign DisplayName="Assign - Manager name (Split email id)" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[managerName]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[StrConv(email.Split("@"c)(0).ToLower, VbStrConv.ProperCase).Replace(".", " ").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign - Sharepoint Link" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[sharepointLink]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_sharePointURL + in_sharepointFolderPath + in_processName + "/Departments/" + Department + "/" + in_Year + "/" + in_previousMonth +"/"]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <umab:CreateHtmlContent DisplayName="Create HTML Content - Create html body " sap:VirtualizedContainerService.HintSize="434,151" HtmlContent="[htnlBody]" sap2010:WorkflowViewState.IdRef="CreateHtmlContent_1">
+              <umab:CreateHtmlContent.HtmlContentArg>
+                <umabh:HtmlContentArgument FilePath=".data/HtmlContent1.html">
+                  <umabh:HtmlContentArgument.RuntimeImages>
+                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                  </umabh:HtmlContentArgument.RuntimeImages>
+                  <umabh:HtmlContentArgument.ValueMappings>
+                    <scg:List x:TypeArguments="umabh:HtmlValueMappingBase" Capacity="4">
+                      <umabh:HtmlTextValueMapping Name="Department" Value="[Department]" />
+                      <umabh:HtmlTextValueMapping Name="ManagerName" Value="[managerName]" />
+                      <umabh:HtmlTextValueMapping Name="sharepointLink" Value="[sharepointLink]" />
+                      <umabh:HtmlTextValueMapping Name="ProcessName" Value="[in_processName]" />
+                    </scg:List>
+                  </umabh:HtmlContentArgument.ValueMappings>
+                </umabh:HtmlContentArgument>
+              </umab:CreateHtmlContent.HtmlContentArg>
+            </umab:CreateHtmlContent>
+            <Assign DisplayName="Assign - email subject" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[emailSubject]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_processName + " | " + Department + " - " + in_previousMonth + " " + in_Year + " | " + DateTime.Now.ToString("MM/dd/yyyy")]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:SendMail Bcc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Attach department excel file and send mail to department managers email ID" Body="[htnlBody]" Cc="[in_sendMailCC]" DisplayName="Send SMTP Mail Message - send mail to a particular departments manager " Email="[in_userName]" EnableSSL="True" From="[in_userName]" sap:VirtualizedContainerService.HintSize="434,190" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="True" Name="Uipath Robot" Password="[New System.Net.NetworkCredential(String.Empty, in_userPassword).Password]" Port="[in_smtpPortNumber]" SecureConnection="Auto" Server="[in_smtpServer]" Subject="[emailSubject]" To="vigneshwaritandel@gmail.com">
+              <ui:SendMail.Files>
+                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                  <InArgument x:TypeArguments="x:String">[DepartmentExcelFile]</InArgument>
+                </scg:List>
+              </ui:SendMail.Files>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:SendMail>
+            <ui:LogMessage DisplayName="Log Message - Mail sent to" sap:VirtualizedContainerService.HintSize="434,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[Department + &quot; departments report sent to &quot; + email]" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <ui:LogMessage DisplayName="Log Message - Send Mail - Department file execution ended" sap:VirtualizedContainerService.HintSize="512,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Send Mail - Department file execution ended.&quot;]" />
+  </Sequence>
+</Activity>
